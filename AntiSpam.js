@@ -5,9 +5,11 @@ import { findByProps } from "vendetta/metro";
 const MessageEvents = findByProps("sendMessage", "receiveMessage");
 
 const BLOCKED_DOMAINS = [
-    "example-scam.com",
-    "phishing-site.net",
-    "fake-giveaway.org"
+    "000l34e.wcomhost.com/?",
+    "0007854.atwebpages.com/desk/index.html",
+    "0.0.0.0ssl.cryptonight.net"
+	"robiox.com.sb"
+	"robloxr.cfd"
 ];
 
 function isBlockedLink(message) {
@@ -21,7 +23,6 @@ export default new Plugin({
         unpatch = after("receiveMessage", MessageEvents, ([message]) => {
             if (message?.content && isBlockedLink(message.content)) {
                 console.warn("Blocked a potential phishing/spam link:", message.content);
-                // Optionally delete or replace the message
                 message.content = "[Blocked suspicious link]";
             }
         });
